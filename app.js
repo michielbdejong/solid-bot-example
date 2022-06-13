@@ -1,6 +1,9 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
 
+// Set to the user's Solid Identity Provider; e.g., "https://login.inrupt.com" 
+const IDP = "https://solidcommunity.net";
+
 const { 
   getSessionFromStorage,
   getSessionIdFromStorageAll,
@@ -43,8 +46,7 @@ app.get("/login", async (req, res, next) => {
     // URL, with the data necessary to complete the authentication process
     // appended as query parameters:
     redirectUrl: `http://localhost:${port}/redirect-from-solid-idp`,
-    // Set to the user's Solid Identity Provider; e.g., "https://login.inrupt.com" 
-    oidcIssuer: "https://login.inrupt.com",
+    oidcIssuer: IDP,
     // Pick an application name that will be shown when asked 
     // to approve the application's access to the requested data.
     clientName: "Demo app",
@@ -106,6 +108,6 @@ app.get("/", async (req, res, next) => {
 app.listen(port, () => {
   console.log(
     `Server running on port [${port}]. ` +
-    `Visit [http://localhost:${port}/login] to log in to [broker.pod.inrupt.com].`
+    `Visit [http://localhost:${port}/login] to log in to [${IDP}].`
   );
 });
