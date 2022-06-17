@@ -12,7 +12,7 @@ const {
 } = require("@inrupt/solid-client-authn-node");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // The following snippet ensures that the server identifies each user's session
 // with a cookie using an express-specific mechanism
