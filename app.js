@@ -3,6 +3,7 @@ const cookieSession = require("cookie-session");
 
 // Set to the user's Solid Identity Provider; e.g., "https://login.inrupt.com" 
 const IDP = process.env.IDP || "https://solidcommunity.net";
+const HOST = process.env.HOST || "http://localhost";
 
 const { 
   getSessionFromStorage,
@@ -46,7 +47,7 @@ app.get("/login", async (req, res, next) => {
     // After login, the Solid Identity Provider will send the user back to the following
     // URL, with the data necessary to complete the authentication process
     // appended as query parameters:
-    redirectUrl: `http://localhost:${port}/redirect-from-solid-idp`,
+    redirectUrl: `${HOST}:${port}/redirect-from-solid-idp`,
     oidcIssuer: IDP,
     // Pick an application name that will be shown when asked 
     // to approve the application's access to the requested data.
