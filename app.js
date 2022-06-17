@@ -2,7 +2,7 @@ const express = require("express");
 const cookieSession = require("cookie-session");
 
 // Set to the user's Solid Identity Provider; e.g., "https://login.inrupt.com" 
-const IDP = "https://solidcommunity.net";
+const IDP = process.env.IDP || "https://solidcommunity.net";
 
 const { 
   getSessionFromStorage,
@@ -37,6 +37,7 @@ app.get("/login", async (req, res, next) => {
     // given URL, but the specific method of redirection depend on your app's particular setup.
     // For example, if you are writing a command line app, this might simply display a prompt for
     // the user to visit the given URL in their browser.
+    console.log(`sending the user to ${url}`);
     res.redirect(url);
   };
   // 2. Start the login process; redirect handler will handle sending the user to their

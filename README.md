@@ -1,5 +1,7 @@
 ## Solid Bot Demo
 
+Requires node version >= 12.
+
 ```sh
 npm install
 npm start
